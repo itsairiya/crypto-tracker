@@ -37,11 +37,26 @@ async function getCrypto() {
                     coinDiv.append(coinLogo, coinName, coinSymbol);
                     row.append(coinDiv);
 
-                    //creates cells for price
-                    const coinPrice = document.createElement("td");
-                    coinPrice.textContent = `${coin.current_price}`;
+                    //create formatting for the numbers
+                    const currencyFormatter = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD'
+                    });
+                    
+                    const percentageFormatter = new Intl.NumberFormat('en-US', {
+                        style: 'percent',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 1
+                    });
 
-                    //creates % change cells
+                    //creates cell for price, formats the price and adds it to the cell
+                    const coinPrice = document.createElement("td");
+                    const rawPrice = coin.current_price;
+                    const formattedPrice = currencyFormatter.format(rawPrice);
+                    coinPrice.textContent = formattedPrice;
+                    
+
+                    //creates % change cells and adds them to their cells
                     const coin24h = document.createElement("td");
                     coin24h.textContent = `${coin.price_change_percentage_24h_in_currency}`;
 
@@ -51,9 +66,11 @@ async function getCrypto() {
                     const coin7d = document.createElement("td");
                     coin7d.textContent = `${coin.price_change_percentage_7d_in_currency}`;
 
-                    //creates market cap's cell
+                    //creates market cap's cell, takes the raw amount, formats it and adds it to the cell
                     const coinMarketCap = document.createElement("td");
-                    coinMarketCap.textContent = `${coin.market_cap}`;
+                    const rawMarketCap = coin.market_cap;
+                    const formattedMarketCap = currencyFormatter.format(rawMarketCap);
+                    coinMarketCap.textContent = formattedMarketCap;
 
 
 
