@@ -40,7 +40,8 @@ async function getCrypto() {
                     //create formatting for the numbers
                     const currencyFormatter = new Intl.NumberFormat('en-US', {
                         style: 'currency',
-                        currency: 'USD'
+                        currency: 'USD',
+                        minimumFractionDigits: 0
                     });
                     
                     const percentageFormatter = new Intl.NumberFormat('en-US', {
@@ -56,15 +57,21 @@ async function getCrypto() {
                     coinPrice.textContent = formattedPrice;
                     
 
-                    //creates % change cells and adds them to their cells
+                    //creates % change cells, formats them adds them to their cells
                     const coin24h = document.createElement("td");
-                    coin24h.textContent = `${coin.price_change_percentage_24h_in_currency}`;
+                    const raw24h = coin.price_change_percentage_24h_in_currency;
+                    const formatted24h = percentageFormatter.format(raw24h);
+                    coin24h.textContent = formatted24h;
 
                     const coin1h = document.createElement("td");
-                    coin1h.textContent = `${coin.price_change_percentage_1h_in_currency}`;
+                    const raw1h = coin.price_change_percentage_1h_in_currency;
+                    const formatted1h = percentageFormatter.format(raw1h);
+                    coin1h.textContent = formatted1h;
 
                     const coin7d = document.createElement("td");
-                    coin7d.textContent = `${coin.price_change_percentage_7d_in_currency}`;
+                    const raw7d = coin.price_change_percentage_7d_in_currency;
+                    const formatted7d = percentageFormatter.format(raw7d);
+                    coin7d.textContent = formatted7d;
 
                     //creates market cap's cell, takes the raw amount, formats it and adds it to the cell
                     const coinMarketCap = document.createElement("td");
