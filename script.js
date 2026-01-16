@@ -45,40 +45,61 @@ async function getCrypto() {
                     });
                     
                     const percentageFormatter = new Intl.NumberFormat('en-US', {
-                        style: 'percent',
-                        minimumFractionDigits: 0,
+                        //style: 'percent',
+                        minimumFractionDigits: 1,
                         maximumFractionDigits: 1
                     });
 
-                    //creates cell for price, formats the price and adds it to the cell
+                    //
                     const coinPrice = document.createElement("td");
                     const rawPrice = coin.current_price;
                     const formattedPrice = currencyFormatter.format(rawPrice);
                     coinPrice.textContent = formattedPrice;
                     
 
-                    //creates % change cells, formats them adds them to their cells
+                    //
                     const coin24h = document.createElement("td");
                     const raw24h = coin.price_change_percentage_24h_in_currency;
                     const formatted24h = percentageFormatter.format(raw24h);
-                    coin24h.textContent = formatted24h;
+
+                    //
+                    if (raw24h < 0) {
+                        coin24h.classList.add("negative");
+                    } else {
+                        coin24h.classList.add("positive");
+                    }
+
+                    coin24h.textContent = formatted24h + "%";
 
                     const coin1h = document.createElement("td");
                     const raw1h = coin.price_change_percentage_1h_in_currency;
                     const formatted1h = percentageFormatter.format(raw1h);
-                    coin1h.textContent = formatted1h;
+
+                    if (raw1h < 0) {
+                        coin1h.classList.add("negative");
+                    } else {
+                        coin1h.classList.add("positive");
+                    }
+
+                    coin1h.textContent = formatted1h + "%";
 
                     const coin7d = document.createElement("td");
                     const raw7d = coin.price_change_percentage_7d_in_currency;
                     const formatted7d = percentageFormatter.format(raw7d);
-                    coin7d.textContent = formatted7d;
+
+                    if (raw7d < 0) {
+                        coin7d.classList.add("negative");
+                    } else {
+                        coin7d.classList.add("positive");
+                    }
+
+                    coin7d.textContent = formatted7d + "%";
 
                     //creates market cap's cell, takes the raw amount, formats it and adds it to the cell
                     const coinMarketCap = document.createElement("td");
                     const rawMarketCap = coin.market_cap;
                     const formattedMarketCap = currencyFormatter.format(rawMarketCap);
                     coinMarketCap.textContent = formattedMarketCap;
-
 
 
                     row.append(coinPrice, coin1h, coin24h, coin7d, coinMarketCap);
