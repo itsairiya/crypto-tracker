@@ -138,15 +138,27 @@ const inputSearch = document.querySelector("#search");
 inputSearch.addEventListener("input", () => {
     const inputValue = inputSearch.value.trim();
     const lower = inputValue.toLowerCase();
-    //console.log(lower);
+    inputOptions = [];
+    const dropdown = document.querySelector("#dropdown");
+    
+    dropdown.textContent = "";
 
     for (let coin of data) {
         const name = coin.name;
         const symbol = coin.symbol;
+        
+        
         if (name.includes(lower) || symbol.includes(lower)) {
             inputOptions.push(coin);
-            inputOptions = [];
+            
         } 
-        console.log(inputOptions);
+        //console.log(inputOptions);
+        
+        
+
+        for (let input of inputOptions) {
+            dropdown.append(input);
+        }
+        console.log(dropdown);
     }
 });
