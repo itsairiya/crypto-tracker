@@ -1,11 +1,13 @@
 const market = document.querySelector("#markets");
+let data;
 
 async function getCrypto() {
     try {
         const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=layer-1&price_change_percentage=1h%2C24h%2C7d&page=1&per_page=20&sparkline=false&x_cg_demo_api_key=CG-MoDGHaqpMYsAZUxhKVGcoGEk');
         if (res.ok) {
-            const data = await res.json();
+            data = await res.json();
             console.log(data);
+            
 
             function generateTable(data) {
                 const tBody = document.querySelector("#markets-body");
@@ -128,3 +130,10 @@ async function getCrypto() {
     }
 }
 getCrypto();
+
+const inputSearch = document.querySelector("#search");
+inputSearch.addEventListener("input", () => {
+    const inputValue = inputSearch.value;
+    const lower = inputValue.toLowerCase();
+    console.log(lower);
+});
