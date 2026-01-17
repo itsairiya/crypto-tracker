@@ -34,7 +34,7 @@ async function getCrypto() {
                     coinName.textContent = `${coin.name}`;
                     const coinSymbol = document.createElement("td");
                     coinSymbol.textContent = `${coin.symbol}`;
-
+                    
                     //appends cells to row
                     coinDiv.append(coinLogo, coinName, coinSymbol);
                     row.append(coinDiv);
@@ -129,11 +129,24 @@ async function getCrypto() {
         console.log("Error:", error);
     }
 }
+
 getCrypto();
+
+let inputOptions = [];
 
 const inputSearch = document.querySelector("#search");
 inputSearch.addEventListener("input", () => {
-    const inputValue = inputSearch.value;
+    const inputValue = inputSearch.value.trim();
     const lower = inputValue.toLowerCase();
-    console.log(lower);
+    //console.log(lower);
+
+    for (let coin of data) {
+        const name = coin.name;
+        const symbol = coin.symbol;
+        if (name.includes(lower) || symbol.includes(lower)) {
+            inputOptions.push(coin);
+            inputOptions = [];
+        } 
+        console.log(inputOptions);
+    }
 });
