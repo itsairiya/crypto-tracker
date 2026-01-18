@@ -135,30 +135,34 @@ getCrypto();
 let inputOptions = [];
 
 const inputSearch = document.querySelector("#search");
-inputSearch.addEventListener("input", () => {
-    const inputValue = inputSearch.value.trim();
-    const lower = inputValue.toLowerCase();
-    inputOptions = [];
-    const dropdown = document.querySelector("#dropdown");
-    
-    dropdown.textContent = "";
+const suggestions = document.querySelector("#suggestions");
 
+inputSearch.addEventListener("input", () => {
+    const lower = inputSearch.value.trim().toLowerCase();
+
+    //resetting
+    inputOptions = [];
+    suggestions.textContent = "";
+
+    if (lower === "") return;
+
+    //filters data
     for (let coin of data) {
-        const name = coin.name;
-        const symbol = coin.symbol;
+        const name = coin.name.toLowerCase();
+        const symbol = coin.symbol.toLowerCase();
         
         
         if (name.includes(lower) || symbol.includes(lower)) {
             inputOptions.push(coin);
-            
-        } 
-        //console.log(inputOptions);
-        
-        
-
-        for (let input of inputOptions) {
-            dropdown.append(input);
+            //console.log(inputOptions);
         }
-        console.log(dropdown);
     }
+
+    //renders to suggestions
+     for (let coin of inputOptions) {
+            const item = document.createElement("div");;
+            item.textContent = `${coin.name} (${coin.symbol})`;
+            suggestions.append(item);
+        }
+        console.log(suggestions);
 });
