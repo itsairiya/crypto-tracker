@@ -28,7 +28,7 @@ async function getCrypto() {
                     const coinImg = document.createElement("img");
                     coinImg.src = `${coin.image}`;
                     coinLogo.append(coinImg);
-                    coinLogo.classList.add("pic");
+                    coinImg.classList.add("pic");
 
                     const coinName = document.createElement("td");
                     coinName.textContent = `${coin.name}`;

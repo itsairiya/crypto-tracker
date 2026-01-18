@@ -10,6 +10,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 40px 20px;
 }
+
 h1 {
     text-align: center;
     color: white;
@@ -28,12 +29,19 @@ h1 {
     transition: all 0.3s;
 }
 
-#username:focus {
+#search:focus {
     outline: none;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
 
+.pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
 
 .negative {
     color: red !important;
