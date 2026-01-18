@@ -20,24 +20,24 @@ async function getCrypto() {
                     const row = document.createElement("tr");
                     
                     //creates a div for coin info & adds class for them
+                    const coinCell = document.createElement("td");
                     const coinDiv = document.createElement("div");
                     coinDiv.classList.add("coin-info");
 
                     //creates image and cell element, after appends the image to the cell
-                    const coinLogo = document.createElement("td");
                     const coinImg = document.createElement("img");
-                    coinImg.src = `${coin.image}`;
-                    coinLogo.append(coinImg);
+                    coinImg.src = coin.image;
                     coinImg.classList.add("pic");
 
-                    const coinName = document.createElement("td");
-                    coinName.textContent = `${coin.name}`;
-                    const coinSymbol = document.createElement("td");
-                    coinSymbol.textContent = `${coin.symbol}`;
+                    const coinName = document.createElement("span");
+                    coinName.textContent = coin.name;
+                    const coinSymbol = document.createElement("span");
+                    coinSymbol.textContent = coin.symbol;
                     
                     //appends cells to row
-                    coinDiv.append(coinLogo, coinName, coinSymbol);
-                    row.append(coinDiv);
+                    coinDiv.append(coinImg, coinName, coinSymbol);
+                    coinCell.append(coinDiv);
+                    row.append(coinCell);
 
                     //create formatting for the numbers
                     const currencyFormatter = new Intl.NumberFormat('en-US', {
