@@ -72,6 +72,12 @@ h1 {
 #markets-body {
     text-align: center;
 }
+
+td:first-child {
+  padding-left: 16px;
+  min-width: 220px;
+}
+
 .pic {
     width: 30px;
     height: 30px;
@@ -80,13 +86,23 @@ h1 {
     object-fit: cover;
 }
 
-.coinInfo {
+.coin-info {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    line-height: 1.2;
 }
 
+.coin-info span {
+    display: inline-block;
+}
 
+.coin-symbol {
+    color: #6b7280;
+    font-size: 0.7rem;
+    margin-left: 6px;
+}
 
 .negative {
     color: red !important;

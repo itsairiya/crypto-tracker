@@ -33,6 +33,7 @@ async function getCrypto() {
                     coinName.textContent = coin.name;
                     const coinSymbol = document.createElement("span");
                     coinSymbol.textContent = coin.symbol;
+                    coinSymbol.classList.add("coin-symbol");
                     
                     //appends cells to row
                     coinDiv.append(coinImg, coinName, coinSymbol);
