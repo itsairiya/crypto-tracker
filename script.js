@@ -131,6 +131,9 @@ async function getCrypto() {
 }
 
 getCrypto();
+setInterval(() => {
+    getCrypto();
+}, 5 * 60 * 1000);
 
 let inputOptions = [];
 
